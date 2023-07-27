@@ -1,0 +1,40 @@
+data:
+    train_data: /home/user/workspace/AGC/data/dataset/final_ratio_train
+    gold_dataset_file: ../data/golden.json
+    shuffle: True
+    pos: False
+    max_length : 512 
+    output_file: ./output/
+model:
+    model_name: klue/roberta-large
+    encoder_name : klue/roberta-large
+    checkpoints_dir: None
+    saved_model: ./output/
+    save: True 
+    cnn : False
+train:
+    weight_decay : 0.01
+    train_mode: True
+    seed: 43
+    batch_size: 28
+    epoch: 2 #5
+    temperature : 0.05
+    lr: 1e-6
+    second_lr : 1e-5 
+    logging_step : 10
+    eval_step: 50000
+    save_step: 1000000
+    checkpoint : ./output
+    # patience : 10
+scheduler: 
+    T_0: 50 
+    T_mult : 2
+    eta_min : 1e-8 
+test:
+    test_mode: False
+    output_csv: /opt/ml/code/prediction/2_xlm-roberta-base.csv
+
+wandb:
+    project_name: AGC_retrieval
+    entity: hanseong_1201
+    exp_name: colbert_first
